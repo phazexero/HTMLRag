@@ -1,0 +1,6 @@
+langchain
+langchain-community
+langchain-together
+pymilvus
+bs4
+lxml
