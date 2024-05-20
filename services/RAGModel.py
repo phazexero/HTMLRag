@@ -45,6 +45,7 @@ def rag_call(query):
     answer = rag_chain.invoke(query)
     return answer
 
-query = "What are the steps to do interest calculation transaction by transaction?"
+query = input()
+# query = "What are the steps to do interest calculation transaction by transaction?"
 ls = rag_call(query)
 print(ls)

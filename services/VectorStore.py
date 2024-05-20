@@ -1,6 +1,10 @@
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_community.vectorstores import Milvus
 from HTMLLoader import html_splitter
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def dbgenerator():
     urls = ["https://help.tallysolutions.com/tally-prime/accounting/interest-calculation-tally/"]
@@ -10,10 +14,10 @@ def dbgenerator():
     encode_kwargs = {"normalize_embeddings": False}
     embedding_function = HuggingFaceBgeEmbeddings(model_name=model_name, encode_kwargs=encode_kwargs)
 
-    print("hi")
+    # print("hi")
     vectorstore = Milvus.from_documents(splits,
                                         embedding_function,
-                                        connection_args={"host": "127.0.0.1", "port": "19530"},
+                                        connection_args={"host": os.environ["MILVUS_IP"], "port": "19530"},
                                         collection_name = "html_embeddings", ## custom collection name 
                                         search_params = {"metric":"IP","offset":0}, ## search params
                                         )
